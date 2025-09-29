@@ -1,0 +1,205 @@
+{
+  "algorithm": {
+    "type": "object",
+    "required": ["id", "name", "category", "description", "packages"],
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the algorithm"
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the algorithm"
+      },
+      "category": {
+        "type": "string",
+        "enum": ["standard", "hmc", "parallel", "mixed", "adaptive", "specialized"],
+        "description": "Category of the algorithm"
+      },
+      "description": {
+        "type": "string",
+        "description": "Brief description of what the algorithm does"
+      },
+      "long_description": {
+        "type": "string",
+        "description": "Detailed description of the algorithm"
+      },
+      "package": {
+        "type": "string",
+        "description": "R package that contains this algorithm"
+      },
+      "function_name": {
+        "type": "string",
+        "description": "Name of the function in the package"
+      },
+      "parameters": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "type": {"type": "string"},
+            "description": {"type": "string"},
+            "required": {"type": "boolean"},
+            "default": {"type": "string"}
+          }
+        }
+      },
+      "example_code": {
+        "type": "string",
+        "description": "R code example showing how to use the algorithm"
+      },
+      "references": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {"type": "string"},
+            "authors": {"type": "string"},
+            "journal": {"type": "string"},
+            "year": {"type": "integer"},
+            "doi": {"type": "string"},
+            "url": {"type": "string"}
+          }
+        }
+      },
+      "tags": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "Keywords for searching"
+      },
+      "pros": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "Advantages of this algorithm"
+      },
+      "cons": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "Disadvantages or limitations"
+      },
+      "use_cases": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "When to use this algorithm"
+      },
+      "contributor": {
+        "type": "string",
+        "description": "Person who added this entry"
+      },
+      "date_added": {
+        "type": "string",
+        "format": "date",
+        "description": "Date when this entry was added"
+      },
+      "last_updated": {
+        "type": "string",
+        "format": "date",
+        "description": "Date when this entry was last updated"
+      }
+    }
+  },
+  "package": {
+    "type": "object",
+    "required": ["id", "name", "version", "description", "maintainer"],
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the package"
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the R package"
+      },
+      "version": {
+        "type": "string",
+        "description": "Current version of the package"
+      },
+        "description": {
+        "type": "string",
+        "description": "Brief description of the package"
+      },
+      "long_description": {
+        "type": "string",
+        "description": "Detailed description of the package"
+      },
+      "maintainer": {
+        "type": "string",
+        "description": "Package maintainer"
+      },
+      "authors": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "List of package authors"
+      },
+      "url": {
+        "type": "string",
+        "description": "Package homepage or repository URL"
+      },
+      "cran_url": {
+        "type": "string",
+        "description": "CRAN package page URL"
+      },
+      "github_url": {
+        "type": "string",
+        "description": "GitHub repository URL"
+      },
+      "license": {
+        "type": "string",
+        "description": "Package license"
+      },
+      "depends": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "Package dependencies"
+      },
+      "suggests": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "Suggested packages"
+      },
+      "algorithms": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "List of algorithm IDs in this package"
+      },
+      "categories": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "Categories of algorithms in this package"
+      },
+      "installation": {
+        "type": "string",
+        "description": "Installation command"
+      },
+      "documentation_url": {
+        "type": "string",
+        "description": "Link to package documentation"
+      },
+      "vignettes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {"type": "string"},
+            "url": {"type": "string"}
+          }
+        }
+      },
+      "contributor": {
+        "type": "string",
+        "description": "Person who added this package"
+      },
+      "date_added": {
+        "type": "string",
+        "format": "date",
+        "description": "Date when this package was added"
+      },
+      "last_updated": {
+        "type": "string",
+        "format": "date",
+        "description": "Date when this package was last updated"
+      }
+    }
+  }
+}

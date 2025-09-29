@@ -1,0 +1,57 @@
+Non-adaptive Metropolis–Hastings
+- Random-walk MH (Gaussian / t / Laplace proposals; scalar, block, or Metropolis-within-Gibbs)
+- Independence MH
+- Multiple-Try Metropolis (MTM)
+- Delayed Rejection (DR) (non-adaptive version)
+- MALA (Metropolis-Adjusted Langevin Algorithm); preconditioned MALA (pMALA); manifold/MMALA
+- pCN (preconditioned Crank–Nicolson) (common in function-space MCMC)
+- Hit-and-Run MH
+- Pseudo-marginal MH; Auxiliary Pseudo-Marginal (APM)
+- Exchange / Double MH (for intractable normalizing constants)
+- ABC-MH (likelihood-free with MH accept/reject)
+- Barker’s algorithm (alternative accept rule)
+- Metropolis-within-Gibbs (Gibbs as special case with acceptance prob. 1)
+
+Adaptive Metropolis–Hastings
+- Adaptive Metropolis (AM) (Haario et al.) — online covariance adaptation
+- Robust Adaptive Metropolis (RAM) — adaptive scaling to target acc. rate
+- Adaptive Scaling Random-Walk MH (e.g., Andrieu-Thoms, Atchadé-Rosenthal)
+- Delayed Rejection Adaptive Metropolis (DRAM)
+- Adaptive Metropolis-within-Gibbs / Component-wise AM
+- Regional/Locally Adaptive Metropolis (state-space partitioning)
+- Mixture-proposal Adaptive MH (learned mixture of Gaussians/t’s)
+- Kernel/Nonparametric Adaptive MH (e.g., Kameleon MCMC)
+- Covariance Matrix Adaptation MH (CMA-style proposal adaptation)
+- Adaptive MALA / Adaptive pCN (tuning step size/preconditioner)
+
+Population Monte Carlo–MH hybrids (adaptive IS proposals wrapped with MH correction)
+- Population-based (multiple chains / ensembles / tempering)
+- Parallel Tempering / Replica Exchange (Metropolis-coupled MCMC); Adaptive PT
+- Equi-Energy Sampler (EE); Tempered Transitions
+- Differential Evolution MCMC (DE-MC); DREAM / DREAM(ZS) (multi-chain DE variants)
+- Affine-Invariant Ensemble Sampler (Goodman–Weare; e.g., emcee)
+- Ensemble MCMC frameworks (stretch, walk, snooker, DEMCZ moves)
+- Evolutionary / Genetic MCMC (crossover/mutation proposals)
+- Population MCMC (bridging chains across temperatures or likelihood powers)
+
+Sequential-based (time/temperature sequences; particle methods)
+- SMC Samplers / Annealed SMC / Sequential Tempered MCMC (ST-MCMC)
+- Resample–Move SMC (MCMC rejuvenation steps)
+- Particle MCMC (pMCMC) family:
+- PMMH (Particle Marginal MH)
+- Particle Gibbs (PG); PG with Ancestor Sampling (PG-AS)
+- Particle Independent MH (PIMH)
+- Iterated Batch Importance Sampling (IBIS)
+- Sequential/Bridge Sampling with MCMC rejuvenation
+- Sequential Tempering / Path Sampling with MH kernels
+- Hamiltonian Monte Carlo (HMC) & relatives
+
+HMC (a.k.a. Hybrid Monte Carlo) (leapfrog integrator with MH correction)
+- NUTS (No-U-Turn Sampler); NUTS with adaptation (mass matrix, step size)
+- Riemannian Manifold HMC (RMHMC); SoftAbs / position-specific mass
+- Generalized / Shadow HMC; Magnetic / Non-canonical HMC
+- Relativistic HMC
+- Split / Multi-scale HMC; Explicit/Implicit integrator variants
+- Horowitz / GHMC (Generalized HMC with momentum refresh)
+- Stochastic-Gradient HMC (SGHMC); SGLD with MH correction (note: many SG-MCMC variants are approximate unless corrected)
+- Nosé–Hoover / Thermostatted HMC; Bouncy/zig-zag HMC-like hybrids (event-driven, sometimes used without MH)

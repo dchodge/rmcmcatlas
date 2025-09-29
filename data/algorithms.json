@@ -1,0 +1,792 @@
+[
+  {
+    "id": "non-adaptive-metropolis-hastings",
+    "name": "Non-adaptive Metropolis-Hastings",
+    "category": "non-adaptive-metropolis-hastings",
+    "description": "Classic Metropolis-Hastings with fixed proposal distributions",
+    "long_description": "Non-adaptive Metropolis-Hastings uses fixed proposal distributions that don't change during sampling. This is the original and most fundamental MCMC algorithm, providing a solid foundation for understanding MCMC methods.",
+    "packages": [
+      {
+        "name": "coda",
+        "function": "metrop",
+        "description": "Basic Metropolis-Hastings implementation"
+      },
+      {
+        "name": "MCMCpack",
+        "function": "MCMCmetrop1R",
+        "description": "Univariate Metropolis-Hastings"
+      },
+      {
+        "name": "nimble",
+        "function": "configureMCMC",
+        "description": "Configurable MCMC with MH samplers"
+      }
+    ],
+    "example_code": "# Basic Metropolis-Hastings example\nlibrary(coda)\n\n# Define log density function\nlog_density <- function(x) {\n  -0.5 * sum(x^2)  # Standard normal\n}\n\n# Run MCMC\nresult <- metrop(log_density, initial = 0, nbatch = 1000)\n\n# Convert to mcmc object\nmcmc_result <- mcmc(result$batch)\nplot(mcmc_result)",
+    "references": [
+      {
+        "title": "Equation of State Calculations by Fast Computing Machines",
+        "authors": "Metropolis, N., Rosenbluth, A.W., Rosenbluth, M.N., Teller, A.H., Teller, E.",
+        "journal": "Journal of Chemical Physics",
+        "year": 1953,
+        "doi": "10.1063/1.1699114"
+      }
+    ],
+    "tags": ["mcmc", "metropolis", "hastings", "sampling", "bayesian", "non-adaptive"],
+    "pros": [
+      "Simple to implement",
+      "Works with any target distribution",
+      "No gradient information required",
+      "Well-established theory"
+    ],
+    "cons": [
+      "Can be slow to converge",
+      "Sensitive to proposal distribution",
+      "May get stuck in local modes",
+      "Requires manual tuning"
+    ],
+    "use_cases": [
+      "Basic MCMC sampling",
+      "Educational purposes",
+      "Simple target distributions",
+      "When adaptive methods are not available"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "random-walk-metropolis-hastings",
+    "name": "Random-walk Metropolis-Hastings",
+    "category": "non-adaptive-metropolis-hastings",
+    "description": "Metropolis-Hastings with symmetric random-walk proposals",
+    "long_description": "Random-walk Metropolis-Hastings uses symmetric proposal distributions centered at the current state. Common proposal distributions include Gaussian, t-distribution, and Laplace distributions. Can be applied component-wise (scalar) or in blocks.",
+    "packages": [
+      {
+        "name": "coda",
+        "function": "metrop",
+        "description": "Basic random-walk Metropolis-Hastings"
+      },
+      {
+        "name": "MCMCpack",
+        "function": "MCMCmetrop1R",
+        "description": "Univariate random-walk MH"
+      },
+      {
+        "name": "nimble",
+        "function": "configureMCMC",
+        "description": "Configurable random-walk MH samplers"
+      }
+    ],
+    "example_code": "# Random-walk Metropolis-Hastings example\nlibrary(coda)\n\n# Define log density function\nlog_density <- function(x) {\n  -0.5 * sum(x^2)  # Standard normal\n}\n\n# Run random-walk MH\nresult <- metrop(log_density, initial = 0, nbatch = 1000, scale = 1.0)\n\n# Convert to mcmc object\nmcmc_result <- mcmc(result$batch)\nplot(mcmc_result)",
+    "references": [
+      {
+        "title": "Equation of State Calculations by Fast Computing Machines",
+        "authors": "Metropolis, N., Rosenbluth, A.W., Rosenbluth, M.N., Teller, A.H., Teller, E.",
+        "journal": "Journal of Chemical Physics",
+        "year": 1953,
+        "doi": "10.1063/1.1699114"
+      }
+    ],
+    "tags": ["mcmc", "metropolis", "hastings", "random-walk", "symmetric", "bayesian"],
+    "pros": [
+      "Simple to implement",
+      "Symmetric proposals are easy to tune",
+      "Works with any target distribution",
+      "Well-established theory"
+    ],
+    "cons": [
+      "Can be slow to converge",
+      "Sensitive to proposal scale",
+      "May get stuck in local modes",
+      "Requires manual tuning"
+    ],
+    "use_cases": [
+      "Basic MCMC sampling",
+      "When target is roughly symmetric",
+      "Educational purposes",
+      "Simple target distributions"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "independence-metropolis-hastings",
+    "name": "Independence Metropolis-Hastings",
+    "category": "non-adaptive-metropolis-hastings",
+    "description": "Metropolis-Hastings with proposals independent of current state",
+    "long_description": "Independence Metropolis-Hastings uses proposal distributions that don't depend on the current state. The proposal is typically chosen to approximate the target distribution, making it more efficient when the approximation is good.",
+    "packages": [
+      {
+        "name": "nimble",
+        "function": "configureMCMC",
+        "description": "Configurable independence MH samplers"
+      },
+      {
+        "name": "BayesianTools",
+        "function": "Metropolis",
+        "description": "Independence Metropolis-Hastings variants"
+      }
+    ],
+    "example_code": "# Independence Metropolis-Hastings example\nlibrary(nimble)\n\n# Define model\ncode <- nimbleCode({\n  x ~ dnorm(0, 1)\n})\n\n# Create model\nmodel <- nimbleModel(code)\n\n# Configure MCMC with independence sampler\nmcmcConfig <- configureMCMC(model)\nmcmcConfig$removeSamplers('x')\nmcmcConfig$addSampler(target = 'x', type = 'RW_ind')\n\n# Build and run MCMC\nmcmc <- buildMCMC(mcmcConfig)\ncompiled <- compileNimble(model, mcmc)\n\n# Run sampling\ncompiled$mcmc$run(1000)",
+    "references": [
+      {
+        "title": "Monte Carlo sampling methods using Markov chains and their applications",
+        "authors": "Hastings, W.K.",
+        "journal": "Biometrika",
+        "year": 1970,
+        "doi": "10.1093/biomet/57.1.97"
+      }
+    ],
+    "tags": ["mcmc", "metropolis", "hastings", "independence", "proposal", "bayesian"],
+    "pros": [
+      "Can be very efficient with good proposals",
+      "No random walk behavior",
+      "Good for multimodal targets",
+      "Easy to parallelize"
+    ],
+    "cons": [
+      "Requires good proposal approximation",
+      "Can be very inefficient with poor proposals",
+      "Difficult to choose good proposals",
+      "May have low acceptance rates"
+    ],
+    "use_cases": [
+      "When good proposal approximation is available",
+      "Multimodal distributions",
+      "When target has known structure",
+      "Parallel computing environments"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "mala",
+    "name": "MALA (Metropolis-Adjusted Langevin Algorithm)",
+    "category": "non-adaptive-metropolis-hastings",
+    "description": "Gradient-based Metropolis-Hastings using Langevin dynamics",
+    "long_description": "MALA (Metropolis-Adjusted Langevin Algorithm) uses gradient information to guide proposals. It proposes moves in the direction of the gradient of the log-posterior, scaled by a step size parameter. This can be much more efficient than random-walk proposals.",
+    "packages": [
+      {
+        "name": "nimble",
+        "function": "configureMCMC",
+        "description": "Configurable MALA samplers"
+      },
+      {
+        "name": "BayesianTools",
+        "function": "Metropolis",
+        "description": "MALA and preconditioned MALA variants"
+      }
+    ],
+    "example_code": "# MALA example\nlibrary(nimble)\n\n# Define model with gradient\ncode <- nimbleCode({\n  x ~ dnorm(0, 1)\n})\n\n# Create model\nmodel <- nimbleModel(code)\n\n# Configure MCMC with MALA sampler\nmcmcConfig <- configureMCMC(model)\nmcmcConfig$removeSamplers('x')\nmcmcConfig$addSampler(target = 'x', type = 'RW_PF')\n\n# Build and run MCMC\nmcmc <- buildMCMC(mcmcConfig)\ncompiled <- compileNimble(model, mcmc)\n\n# Run sampling\ncompiled$mcmc$run(1000)",
+    "references": [
+      {
+        "title": "Bayesian Learning via Stochastic Gradient Langevin Dynamics",
+        "authors": "Welling, M., Teh, Y.W.",
+        "journal": "ICML",
+        "year": 2011,
+        "doi": "10.1145/3104482.3104508"
+      }
+    ],
+    "tags": ["mcmc", "mala", "langevin", "gradient", "metropolis", "bayesian"],
+    "pros": [
+      "Uses gradient information",
+      "More efficient than random-walk",
+      "Good mixing properties",
+      "Natural for continuous targets"
+    ],
+    "cons": [
+      "Requires gradients",
+      "Sensitive to step size",
+      "May be unstable",
+      "More complex to implement"
+    ],
+    "use_cases": [
+      "When gradients are available",
+      "High-dimensional problems",
+      "Smooth target distributions",
+      "Continuous parameter spaces"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "adaptive-metropolis-hastings",
+    "name": "Adaptive Metropolis-Hastings",
+    "category": "adaptive-metropolis-hastings",
+    "description": "Metropolis-Hastings with adaptive proposal distributions",
+    "long_description": "Adaptive Metropolis-Hastings algorithms automatically tune their proposal distributions based on the history of the chain. This can significantly improve mixing and convergence compared to non-adaptive methods.",
+    "packages": [
+      {
+        "name": "BayesianTools",
+        "function": "Metropolis",
+        "description": "Various Metropolis MCMC variants with adaptive and delayed rejection"
+      },
+      {
+        "name": "adaptMCMC",
+        "function": "MCMC",
+        "description": "Adaptive Metropolis-Hastings with global adaptive scaling"
+      },
+      {
+        "name": "nimble",
+        "function": "configureMCMC",
+        "description": "Configurable adaptive MCMC samplers"
+      }
+    ],
+    "example_code": "# Adaptive Metropolis-Hastings example\nlibrary(BayesianTools)\n\n# Define log density function\nlog_density <- function(x) {\n  -0.5 * sum(x^2)  # Standard normal\n}\n\n# Setup\nsetup <- createBayesianSetup(log_density, lower = c(-10, -10), upper = c(10, 10))\n\n# Run adaptive MCMC\nresult <- runMCMC(setup, sampler = \"Metropolis\", settings = list(iterations = 1000))\n\n# Plot results\nplot(result)",
+    "references": [
+      {
+        "title": "An adaptive Metropolis algorithm",
+        "authors": "Haario, H., Saksman, E., Tamminen, J.",
+        "journal": "Bernoulli",
+        "year": 2001,
+        "doi": "10.2307/3318737"
+      }
+    ],
+    "tags": ["mcmc", "metropolis", "hastings", "adaptive", "sampling", "bayesian"],
+    "pros": [
+      "Automatic tuning",
+      "Better mixing than non-adaptive",
+      "Reduced manual intervention",
+      "Improved convergence"
+    ],
+    "cons": [
+      "More complex implementation",
+      "May violate Markov property",
+      "Requires burn-in period",
+      "Can be computationally expensive"
+    ],
+    "use_cases": [
+      "High-dimensional problems",
+      "When manual tuning is difficult",
+      "Complex target distributions",
+      "Production MCMC runs"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "adaptive-metropolis",
+    "name": "Adaptive Metropolis (AM)",
+    "category": "adaptive-metropolis-hastings",
+    "description": "Online covariance adaptation for proposal distributions",
+    "long_description": "Adaptive Metropolis (AM) automatically adapts the covariance matrix of the proposal distribution based on the history of the chain. It starts with an initial proposal and gradually updates the covariance to match the empirical covariance of the sampled points.",
+    "packages": [
+      {
+        "name": "adaptMCMC",
+        "function": "MCMC",
+        "description": "Adaptive Metropolis with global adaptive scaling"
+      },
+      {
+        "name": "BayesianTools",
+        "function": "Metropolis",
+        "description": "Adaptive Metropolis variants"
+      }
+    ],
+    "example_code": "# Adaptive Metropolis example\nlibrary(adaptMCMC)\n\n# Define log density function\nlog_density <- function(x) {\n  -0.5 * sum(x^2)  # Standard normal\n}\n\n# Run adaptive Metropolis\nresult <- MCMC(p = log_density, n = 1000, init = c(0, 0), adapt = TRUE, acc.rate = 0.44)\n\n# Plot results\nplot(result)",
+    "references": [
+      {
+        "title": "An adaptive Metropolis algorithm",
+        "authors": "Haario, H., Saksman, E., Tamminen, J.",
+        "journal": "Bernoulli",
+        "year": 2001,
+        "doi": "10.2307/3318737"
+      }
+    ],
+    "tags": ["mcmc", "adaptive", "metropolis", "covariance", "online", "bayesian"],
+    "pros": [
+      "Automatic covariance adaptation",
+      "Good for high dimensions",
+      "Reduces manual tuning",
+      "Improves mixing"
+    ],
+    "cons": [
+      "May violate Markov property",
+      "Requires burn-in period",
+      "Can be computationally expensive",
+      "May be slow to adapt"
+    ],
+    "use_cases": [
+      "High-dimensional problems",
+      "When manual tuning is difficult",
+      "Complex target distributions",
+      "Production MCMC runs"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "robust-adaptive-metropolis",
+    "name": "Robust Adaptive Metropolis (RAM)",
+    "category": "adaptive-metropolis-hastings",
+    "description": "Adaptive scaling to target acceptance rate",
+    "long_description": "Robust Adaptive Metropolis (RAM) adapts the proposal scale to maintain a target acceptance rate (typically 0.44 for random-walk proposals). It uses a stochastic approximation algorithm to adjust the proposal variance based on the acceptance rate.",
+    "packages": [
+      {
+        "name": "adaptMCMC",
+        "function": "MCMC",
+        "description": "Robust Adaptive Metropolis implementation"
+      },
+      {
+        "name": "BayesianTools",
+        "function": "Metropolis",
+        "description": "RAM variants with delayed rejection"
+      }
+    ],
+    "example_code": "# Robust Adaptive Metropolis example\nlibrary(adaptMCMC)\n\n# Define log density function\nlog_density <- function(x) {\n  -0.5 * sum(x^2)  # Standard normal\n}\n\n# Run RAM with target acceptance rate\nresult <- MCMC(p = log_density, n = 1000, init = c(0, 0), adapt = TRUE, acc.rate = 0.44)\n\n# Plot results\nplot(result)",
+    "references": [
+      {
+        "title": "Robust adaptive Metropolis algorithm with coerced acceptance rate",
+        "authors": "Vihola, M.",
+        "journal": "Statistics and Computing",
+        "year": 2012,
+        "doi": "10.1007/s11222-011-9269-5"
+      }
+    ],
+    "tags": ["mcmc", "adaptive", "metropolis", "robust", "acceptance-rate", "bayesian"],
+    "pros": [
+      "Maintains target acceptance rate",
+      "Robust to different target shapes",
+      "Good theoretical properties",
+      "Reduces manual tuning"
+    ],
+    "cons": [
+      "May be slow to adapt",
+      "Requires burn-in period",
+      "Can be computationally expensive",
+      "May violate Markov property"
+    ],
+    "use_cases": [
+      "When target acceptance rate is important",
+      "Robust MCMC sampling",
+      "Complex target distributions",
+      "Production MCMC runs"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "parallel-tempering",
+    "name": "Parallel Tempering",
+    "category": "population-based-algorithms",
+    "description": "Uses multiple chains at different temperatures to improve mixing",
+    "long_description": "Parallel tempering runs multiple MCMC chains simultaneously at different temperatures (inverse temperatures). Hot chains explore the space more freely, while cold chains sample from the target distribution. Chains can swap states, allowing the cold chain to escape local modes.",
+    "packages": [
+      {
+        "name": "drjacoby",
+        "function": "run_mcmc",
+        "description": "Parallel tempering with automatic temperature selection"
+      },
+      {
+        "name": "BayesianTools",
+        "function": "DEzs",
+        "description": "Differential Evolution with parallel tempering"
+      },
+      {
+        "name": "nimble",
+        "function": "configureMCMC",
+        "description": "Configurable parallel tempering samplers"
+      }
+    ],
+    "example_code": "# Parallel Tempering example\nlibrary(drjacoby)\n\n# Define log density function\nlog_density <- function(x) {\n  -0.5 * sum(x^2)  # Standard normal\n}\n\n# Setup parallel tempering\nresult <- run_mcmc(\n  data = list(),\n  df_params = data.frame(name = c(\"x1\", \"x2\"),\n                        min = c(-10, -10),\n                        max = c(10, 10),\n                        init = c(0, 0)),\n  loglike = log_density,\n  n_chains = 4,\n  n_burnin = 1000,\n  n_sample = 1000,\n  parallel = TRUE\n)\n\n# Plot results\nplot(result)",
+    "references": [
+      {
+        "title": "Parallel tempering algorithm for probabilistic sampling and multimodal optimization",
+        "authors": "Earl, D.J., Deem, M.W.",
+        "journal": "Physical Chemistry Chemical Physics",
+        "year": 2005,
+        "doi": "10.1039/b509983h"
+      }
+    ],
+    "tags": ["mcmc", "population", "parallel-tempering", "differential-evolution", "multimodal"],
+    "pros": [
+      "Can escape local modes",
+      "Better exploration of state space",
+      "Parallelizable",
+      "Robust to initialization"
+    ],
+    "cons": [
+      "Computationally expensive",
+      "More complex to implement",
+      "Requires multiple chains",
+      "May be overkill for simple problems"
+    ],
+    "use_cases": [
+      "Multimodal distributions",
+      "High-dimensional problems",
+      "When single chains get stuck",
+      "Parallel computing environments"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "differential-evolution-mcmc",
+    "name": "Differential Evolution MCMC",
+    "category": "population-based-algorithms",
+    "description": "Population-based MCMC using differential evolution for proposal generation",
+    "long_description": "Differential Evolution MCMC (DE-MCMC) uses a population of chains where new proposals are generated using the differences between other chains in the population. This creates self-adaptive proposals that can efficiently explore complex, high-dimensional distributions.",
+    "packages": [
+      {
+        "name": "BayesianTools",
+        "function": "DEzs",
+        "description": "Differential Evolution MCMC with multiple chains"
+      },
+      {
+        "name": "adaptMCMC",
+        "function": "MCMC",
+        "description": "Adaptive MCMC with differential evolution proposals"
+      }
+    ],
+    "example_code": "# Differential Evolution MCMC example\nlibrary(BayesianTools)\n\n# Define log density function\nlog_density <- function(x) {\n  -0.5 * sum(x^2)  # Standard normal\n}\n\n# Setup\nsetup <- createBayesianSetup(log_density, lower = c(-10, -10), upper = c(10, 10))\n\n# Run DE-MCMC\nresult <- runMCMC(setup, sampler = \"DEzs\", settings = list(iterations = 1000, Z = 3))\n\n# Plot results\nplot(result)",
+    "references": [
+      {
+        "title": "Differential Evolution Markov Chain with snooker updater and fewer chains",
+        "authors": "Ter Braak, C.J.F.",
+        "journal": "Statistics and Computing",
+        "year": 2006,
+        "doi": "10.1007/s11222-006-8769-1"
+      }
+    ],
+    "tags": ["mcmc", "differential-evolution", "population", "adaptive", "multimodal"],
+    "pros": [
+      "Self-adaptive proposals",
+      "Good for high dimensions",
+      "Can escape local modes",
+      "No manual tuning required"
+    ],
+    "cons": [
+      "Requires multiple chains",
+      "Computationally expensive",
+      "May be slow for simple problems",
+      "Memory intensive"
+    ],
+    "use_cases": [
+      "High-dimensional problems",
+      "Multimodal distributions",
+      "When manual tuning is difficult",
+      "Complex posterior landscapes"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "dream",
+    "name": "DREAM (Differential Evolution Adaptive Metropolis)",
+    "category": "population-based-algorithms",
+    "description": "Multi-chain differential evolution with adaptive crossover",
+    "long_description": "DREAM (Differential Evolution Adaptive Metropolis) is an extension of DE-MCMC that uses multiple chains and adaptive crossover probabilities. It automatically tunes the number of pairs used to generate proposals and the crossover probability, making it more robust and efficient than basic DE-MCMC.",
+    "packages": [
+      {
+        "name": "BayesianTools",
+        "function": "DEzs",
+        "description": "DREAM implementation with adaptive crossover"
+      }
+    ],
+    "example_code": "# DREAM example\nlibrary(BayesianTools)\n\n# Define log density function\nlog_density <- function(x) {\n  -0.5 * sum(x^2)  # Standard normal\n}\n\n# Setup\nsetup <- createBayesianSetup(log_density, lower = c(-10, -10), upper = c(10, 10))\n\n# Run DREAM\nresult <- runMCMC(setup, sampler = \"DEzs\", settings = list(iterations = 1000, Z = 3, DEpairs = 3))\n\n# Plot results\nplot(result)",
+    "references": [
+      {
+        "title": "Accelerating Markov chain Monte Carlo simulation by differential evolution with self-adaptive randomized subspace sampling",
+        "authors": "Vrugt, J.A., ter Braak, C.J.F., Diks, C.G.H., Robinson, B.A., Hyman, J.M., Higdon, D.",
+        "journal": "International Journal of Nonlinear Sciences and Numerical Simulation",
+        "year": 2009,
+        "doi": "10.1515/IJNSNS.2009.10.3.273"
+      }
+    ],
+    "tags": ["mcmc", "dream", "differential-evolution", "population", "adaptive", "multimodal"],
+    "pros": [
+      "Adaptive crossover probabilities",
+      "Self-adaptive number of pairs",
+      "Very robust and efficient",
+      "Good for complex landscapes"
+    ],
+    "cons": [
+      "Requires multiple chains",
+      "Computationally expensive",
+      "More complex than DE-MCMC",
+      "Memory intensive"
+    ],
+    "use_cases": [
+      "Complex posterior landscapes",
+      "High-dimensional problems",
+      "When DE-MCMC is not robust enough",
+      "Multimodal distributions"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "bootstrap-particle-filter",
+    "name": "Bootstrap Particle Filter",
+    "category": "sequential-algorithms",
+    "description": "Basic particle filter with multinomial resampling",
+    "long_description": "The bootstrap particle filter is the most basic sequential Monte Carlo method. It uses importance sampling with multinomial resampling to maintain a set of weighted particles that approximate the posterior distribution over time.",
+    "packages": [
+      {
+        "name": "dust2",
+        "function": "dust",
+        "description": "Particle filters and sequential Monte Carlo"
+      },
+      {
+        "name": "pomp",
+        "function": "pfilter",
+        "description": "Particle filters for partially observed Markov processes"
+      }
+    ],
+    "example_code": "# Bootstrap Particle Filter example\nlibrary(dust2)\n\n# Define a simple state space model\nmodel <- dust_example(\"sir\")\n\n# Generate some data\ndata <- model$simulate(pars = list(beta = 0.3, gamma = 0.1), n_particles = 100)\n\n# Run bootstrap particle filter\nfilter <- model$filter(data = data$data, pars = list(beta = 0.3, gamma = 0.1))\n\n# Plot results\nplot(filter)",
+    "references": [
+      {
+        "title": "Sequential Monte Carlo Methods in Practice",
+        "authors": "Doucet, A., de Freitas, N., Gordon, N.",
+        "journal": "Springer",
+        "year": 2001,
+        "doi": "10.1007/978-1-4757-3437-9"
+      }
+    ],
+    "tags": ["mcmc", "sequential", "particle-filter", "bootstrap", "state-space", "time-series"],
+    "pros": [
+      "Simple to implement",
+      "Good for nonlinear models",
+      "Online inference",
+      "Handles non-Gaussian noise"
+    ],
+    "cons": [
+      "Can suffer from particle degeneracy",
+      "Computational complexity grows with time",
+      "Requires careful tuning",
+      "May need many particles"
+    ],
+    "use_cases": [
+      "Nonlinear state space models",
+      "Time series with non-Gaussian noise",
+      "Online parameter estimation",
+      "Target tracking"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "auxiliary-particle-filter",
+    "name": "Auxiliary Particle Filter",
+    "category": "sequential-algorithms",
+    "description": "Improved particle filter with auxiliary variables for better performance",
+    "long_description": "The auxiliary particle filter (APF) improves upon the bootstrap particle filter by using auxiliary variables to guide the resampling step. This can reduce particle degeneracy and improve performance, especially when the likelihood is informative about the next state.",
+    "packages": [
+      {
+        "name": "pomp",
+        "function": "pfilter",
+        "description": "Particle filters including auxiliary particle filter"
+      },
+      {
+        "name": "BayesianTools",
+        "function": "SMC",
+        "description": "Sequential Monte Carlo with auxiliary variables"
+      }
+    ],
+    "example_code": "# Auxiliary Particle Filter example\nlibrary(pomp)\n\n# Define a simple state space model\nmodel <- pomp(\n  data = data.frame(time = 1:100, y = rnorm(100)),\n  times = \"time\",\n  t0 = 0,\n  rprocess = euler(\n    step.fun = \"x = rnorm(n, 0.9*x, 0.1)\",\n    delta.t = 1\n  ),\n  rmeasure = \"y = rnorm(n, x, 1)\",\n  dmeasure = \"dnorm(y, x, 1, give_log)\",\n  initializer = \"x = rnorm(n, 0, 1)\"\n)\n\n# Run auxiliary particle filter\nfilter <- pfilter(model, Np = 1000, filter.mean = TRUE)\n\n# Plot results\nplot(filter)",
+    "references": [
+      {
+        "title": "Auxiliary variable based particle filters",
+        "authors": "Pitt, M.K., Shephard, N.",
+        "journal": "Journal of the American Statistical Association",
+        "year": 1999,
+        "doi": "10.1080/01621459.1999.10474144"
+      }
+    ],
+    "tags": ["mcmc", "sequential", "particle-filter", "auxiliary", "state-space", "time-series"],
+    "pros": [
+      "Reduces particle degeneracy",
+      "Better performance than bootstrap filter",
+      "Good for informative likelihoods",
+      "More efficient resampling"
+    ],
+    "cons": [
+      "More complex than bootstrap filter",
+      "Requires likelihood evaluation",
+      "May be slower per iteration",
+      "Still suffers from degeneracy"
+    ],
+    "use_cases": [
+      "When likelihood is informative",
+      "Reducing particle degeneracy",
+      "Nonlinear state space models",
+      "High-dimensional state spaces"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "nuts-sampler",
+    "name": "No-U-Turn Sampler (NUTS)",
+    "category": "hamiltonian-monte-carlo",
+    "description": "Automatic HMC with adaptive path length",
+    "long_description": "The No-U-Turn Sampler (NUTS) is an extension of HMC that automatically determines the optimal number of leapfrog steps. It uses a recursive algorithm to build a tree of possible trajectories and stops when the trajectory begins to double back on itself, eliminating the need to manually tune the path length.",
+    "packages": [
+      {
+        "name": "rstan",
+        "function": "stan",
+        "description": "Full Stan implementation with NUTS"
+      },
+      {
+        "name": "brms",
+        "function": "brm",
+        "description": "Bayesian regression models using NUTS"
+      },
+      {
+        "name": "rstanarm",
+        "function": "stan_glm",
+        "description": "Bayesian regression models with NUTS"
+      }
+    ],
+    "example_code": "# NUTS with Stan\nlibrary(rstan)\n\n# Stan model code\nmodel_code <- '\ndata {\n  int<lower=0> N;\n  vector[N] x;\n  vector[N] y;\n}\nparameters {\n  real alpha;\n  real beta;\n  real<lower=0> sigma;\n}\nmodel {\n  y ~ normal(alpha + beta * x, sigma);\n  alpha ~ normal(0, 10);\n  beta ~ normal(0, 10);\n  sigma ~ cauchy(0, 5);\n}'\n\n# Prepare data\ndata_list <- list(N = n, x = x, y = y)\n\n# Run NUTS (default in Stan)\nfit <- stan(model_code = model_code, data = data_list, iter = 1000)\nprint(fit)",
+    "references": [
+      {
+        "title": "The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte Carlo",
+        "authors": "Hoffman, M.D., Gelman, A.",
+        "journal": "Journal of Machine Learning Research",
+        "year": 2014,
+        "doi": "10.1145/2503308.2503317"
+      }
+    ],
+    "tags": ["mcmc", "hmc", "nuts", "hamiltonian", "gradient", "stan", "adaptive"],
+    "pros": [
+      "Automatic path length tuning",
+      "Very efficient in high dimensions",
+      "Uses gradient information",
+      "No manual tuning required"
+    ],
+    "cons": [
+      "Requires gradients",
+      "More complex than basic HMC",
+      "Can be computationally expensive",
+      "May be overkill for simple problems"
+    ],
+    "use_cases": [
+      "High-dimensional problems",
+      "When gradients are available",
+      "Complex posterior distributions",
+      "Production Bayesian inference"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "riemannian-manifold-hmc",
+    "name": "Riemannian Manifold HMC (RMHMC)",
+    "category": "hamiltonian-monte-carlo",
+    "description": "HMC with position-dependent mass matrix",
+    "long_description": "Riemannian Manifold HMC (RMHMC) uses a position-dependent mass matrix that adapts to the local geometry of the target distribution. This can significantly improve performance for distributions with complex geometry, such as those with strong correlations or varying curvature.",
+    "packages": [
+      {
+        "name": "nimble",
+        "function": "configureMCMC",
+        "description": "Configurable RMHMC samplers"
+      }
+    ],
+    "example_code": "# RMHMC example (conceptual)\nlibrary(nimble)\n\n# Define model with complex geometry\ncode <- nimbleCode({\n  x[1:2] ~ dmnorm(mean = c(0, 0), prec = matrix(c(1, 0.8, 0.8, 1), 2, 2))\n})\n\n# Create model\nmodel <- nimbleModel(code)\n\n# Configure MCMC with RMHMC sampler\nmcmcConfig <- configureMCMC(model)\nmcmcConfig$removeSamplers('x')\nmcmcConfig$addSampler(target = 'x', type = 'RW_PF')\n\n# Build and run MCMC\nmcmc <- buildMCMC(mcmcConfig)\ncompiled <- compileNimble(model, mcmc)\n\n# Run sampling\ncompiled$mcmc$run(1000)",
+    "references": [
+      {
+        "title": "MCMC using Hamiltonian dynamics",
+        "authors": "Girolami, M., Calderhead, B.",
+        "journal": "Journal of the Royal Statistical Society: Series B",
+        "year": 2011,
+        "doi": "10.1111/j.1467-9868.2010.00765.x"
+      }
+    ],
+    "tags": ["mcmc", "hmc", "riemannian", "manifold", "geometry", "bayesian"],
+    "pros": [
+      "Adapts to local geometry",
+      "Very efficient for complex distributions",
+      "Good for correlated parameters",
+      "Handles varying curvature"
+    ],
+    "cons": [
+      "Requires second derivatives",
+      "Computationally expensive",
+      "Complex to implement",
+      "May be overkill for simple problems"
+    ],
+    "use_cases": [
+      "Distributions with complex geometry",
+      "Strongly correlated parameters",
+      "Varying curvature",
+      "High-dimensional problems"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "gibbs-sampler",
+    "name": "Gibbs Sampler",
+    "category": "gibbs-sampler",
+    "description": "Samples from conditional distributions when joint distribution is complex",
+    "long_description": "The Gibbs sampler is a special case of Metropolis-Hastings where each parameter is sampled from its full conditional distribution. It's particularly useful when the conditional distributions are known and easy to sample from.",
+    "packages": [
+      {
+        "name": "MCMCpack",
+        "function": "MCMCregress",
+        "description": "Gibbs sampler for linear regression"
+      },
+      {
+        "name": "rjags",
+        "function": "jags.model",
+        "description": "JAGS implementation with Gibbs sampling"
+      },
+      {
+        "name": "nimble",
+        "function": "configureMCMC",
+        "description": "Configurable Gibbs samplers"
+      },
+      {
+        "name": "MCMCglmm",
+        "function": "MCMCglmm",
+        "description": "Generalized linear mixed models with Gibbs sampling"
+      }
+    ],
+    "example_code": "# Gibbs sampler for linear regression\nlibrary(MCMCpack)\n\n# Generate example data\nset.seed(123)\nn <- 100\nx <- rnorm(n)\ny <- 2 * x + rnorm(n)\ndata <- data.frame(x = x, y = y)\n\n# Run Gibbs sampler\nresult <- MCMCregress(y ~ x, data = data, niter = 1000)\nsummary(result)",
+    "references": [
+      {
+        "title": "Stochastic Relaxation, Gibbs Distributions, and the Bayesian Restoration of Images",
+        "authors": "Geman, S., Geman, D.",
+        "journal": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+        "year": 1984,
+        "doi": "10.1109/TPAMI.1984.4767596"
+      }
+    ],
+    "tags": ["mcmc", "gibbs", "conditional", "sampling", "bayesian"],
+    "pros": [
+      "No rejection step",
+      "Can be very efficient",
+      "Natural for hierarchical models",
+      "Easy to implement when conditionals are known"
+    ],
+    "cons": [
+      "Requires known conditional distributions",
+      "Can be slow to mix",
+      "May get stuck in local modes",
+      "Not always applicable"
+    ],
+    "use_cases": [
+      "Hierarchical models",
+      "When conditionals are known",
+      "Mixed-effects models",
+      "Latent variable models"
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  }
+]

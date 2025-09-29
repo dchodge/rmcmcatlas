@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCMC Atlas - A Comprehensive Guide to MCMC Algorithms in R</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="pixel-decoration"></div>
+            <div class="pixel-decoration"></div>
+            <div class="pixel-decoration"></div>
+            <div class="pixel-decoration"></div>
+            <h1 class="logo">
+                <i class="fas fa-chart-line"></i>
+                MCMC ATLAS
+            </h1>
+            <p class="subtitle">A COMPREHENSIVE GUIDE TO MARKOV CHAIN MONTE CARLO ALGORITHMS IN R<br><br><strong>WORK IN PROGRESS</strong> - ACTIVELY BEING DEVELOPED AND EXPANDED</p>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#overview" class="nav-link active">OVERVIEW</a></li>
+                <li><a href="#algorithms" class="nav-link">ALGORITHMS</a></li>
+                <li><a href="#posterior-analysis" class="nav-link">ANALYSIS</a></li>
+                <li><a href="#packages" class="nav-link">PACKAGES</a></li>
+                <li><a href="#contribute" class="nav-link">CONTRIBUTE</a></li>
+                <li><a href="#about" class="nav-link">ABOUT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- Overview Section -->
+        <section id="overview" class="section active">
+            <div class="container">
+                <h2>WELCOME TO THE MCMC ATLAS</h2>
+                <p class="intro">
+                    THE MCMC ATLAS IS A COMPREHENSIVE DIRECTORY OF MARKOV CHAIN MONTE CARLO ALGORITHMS 
+                    AVAILABLE IN R. WHETHER YOU'RE LOOKING FOR STANDARD SAMPLERS, HAMILTONIAN MONTE CARLO, 
+                    PARALLEL METHODS, OR SPECIALIZED ALGORITHMS, THIS ATLAS WILL HELP YOU FIND THE RIGHT 
+                    TOOL FOR YOUR BAYESIAN INFERENCE NEEDS.
+                </p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-cogs"></i>
+                        <h3 id="total-algorithms">0</h3>
+                        <p>Algorithms</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-box"></i>
+                        <h3 id="total-packages">0</h3>
+                        <p>R Packages</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-tags"></i>
+                        <h3 id="total-categories">0</h3>
+                        <p>Categories</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3 id="total-contributors">0</h3>
+                        <p>Contributors</p>
+                    </div>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-search"></i>
+                        <h3>Search & Filter</h3>
+                        <p>Find algorithms by name, category, or package with our powerful search tools.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-code"></i>
+                        <h3>Code Examples</h3>
+                        <p>Each algorithm includes practical examples and usage instructions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-plus-circle"></i>
+                        <h3>Contribute</h3>
+                        <p>Add your own algorithms or packages to help grow the community.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-book"></i>
+                        <h3>Documentation</h3>
+                        <p>Comprehensive documentation and links to original sources.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Algorithms Section -->
+        <section id="algorithms" class="section">
+            <div class="container">
+                <h2>MCMC ALGORITHMS</h2>
+                
+                <div class="search-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="search-input" placeholder="SEARCH ALGORITHMS...">
+                    </div>
+                    <div class="filter-controls">
+                        <select id="category-filter">
+                            <option value="">ALL CATEGORIES</option>
+                        </select>
+                        <select id="package-filter">
+                            <option value="">ALL PACKAGES</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="algorithms-grid" id="algorithms-grid">
+                    <!-- Algorithms will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Posterior Analysis Section -->
+        <section id="posterior-analysis" class="section">
+            <div class="container">
+                <h2>POSTERIOR ANALYSIS & PLOTTING</h2>
+                <p class="intro">
+                    ESSENTIAL TOOLS FOR ANALYZING MCMC OUTPUT, ASSESSING CONVERGENCE, AND CREATING 
+                    PUBLICATION-QUALITY VISUALIZATIONS OF POSTERIOR DISTRIBUTIONS.
+                </p>
+                
+                <div class="analysis-categories">
+                    <div class="analysis-category">
+                        <h3><i class="fas fa-chart-line"></i> CONVERGENCE DIAGNOSTICS</h3>
+                        <div class="package-links">
+                            <div class="package-link">
+                                <a href="https://cran.r-project.org/package=coda" target="_blank" class="package-name">coda</a>
+                                <span class="package-function">summary.mcmc()</span>
+                                <p class="package-description">Comprehensive MCMC diagnostics and summaries</p>
+                            </div>
+                            <div class="package-link">
+                                <a href="https://cran.r-project.org/package=posterior" target="_blank" class="package-name">posterior</a>
+                                <span class="package-function">summarise_draws()</span>
+                                <p class="package-description">Modern posterior analysis with tidy data principles</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-category">
+                        <h3><i class="fas fa-palette"></i> VISUALIZATION & PLOTTING</h3>
+                        <div class="package-links">
+                            <div class="package-link">
+                                <a href="https://cran.r-project.org/package=tidybayes" target="_blank" class="package-name">tidybayes</a>
+                                <span class="package-function">spread_draws()</span>
+                                <p class="package-description">Tidy data manipulation for Bayesian models</p>
+                            </div>
+                            <div class="package-link">
+                                <a href="https://cran.r-project.org/package=ggdist" target="_blank" class="package-name">ggdist</a>
+                                <span class="package-function">stat_halfeye()</span>
+                                <p class="package-description">Visualizations of distributions and uncertainty</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-example">
+                    <h3>QUICK START EXAMPLE</h3>
+                    <pre><code># Load packages
+library(coda)
+library(posterior)
+library(tidybayes)
+library(ggdist)
+
+# Basic diagnostics
+summary(mcmc_samples)
+plot(mcmc_samples)
+
+# Modern analysis
+posterior_samples <- as_draws_matrix(mcmc_samples)
+summarise_draws(posterior_samples)
+
+# Tidy visualization
+tidy_samples <- spread_draws(posterior_samples, var1, var2)
+ggplot(tidy_samples, aes(x = var1)) + 
+  stat_halfeye() + 
+  theme_minimal()</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Packages Section -->
+        <section id="packages" class="section">
+            <div class="container">
+                <h2>R PACKAGES</h2>
+                <div class="packages-grid" id="packages-grid">
+                    <!-- Packages will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contribute Section -->
+        <section id="contribute" class="section">
+            <div class="container">
+                <h2>CONTRIBUTE TO THE ATLAS</h2>
+                <p>HELP GROW THE MCMC ATLAS BY CONTRIBUTING ALGORITHMS, PACKAGES, OR IMPROVEMENTS.</p>
+                
+                <div class="contribute-options">
+                    <div class="contribute-card">
+                        <i class="fas fa-box"></i>
+                        <h3>ADD A PACKAGE</h3>
+                        <p>SUBMIT AN R PACKAGE THAT CONTAINS MCMC ALGORITHMS.</p>
+                        <button class="btn btn-primary" onclick="showContributeForm('package')">
+                            ADD PACKAGE
+                        </button>
+                    </div>
+                    <div class="contribute-card">
+                        <i class="fas fa-plus"></i>
+                        <h3>ADD ALGORITHM + PACKAGE</h3>
+                        <p>SUBMIT BOTH A NEW ALGORITHM AND THE PACKAGE THAT IMPLEMENTS IT.</p>
+                        <button class="btn btn-primary" onclick="showContributeForm('algorithm-package')">
+                            ADD BOTH
+                        </button>
+                    </div>
+                    <div class="contribute-card">
+                        <i class="fas fa-bug"></i>
+                        <h3>REPORT ISSUES</h3>
+                        <p>FOUND AN ERROR OR HAVE A SUGGESTION? LET US KNOW!</p>
+                        <button class="btn btn-secondary" onclick="showContributeForm('issue')">
+                            REPORT ISSUE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Contribution Form -->
+                <div id="contribute-form" class="contribute-form" style="display: none;">
+                    <h3 id="form-title">Contribute</h3>
+                    <form id="contribution-form">
+                        <div id="form-content">
+                            <!-- Form content will be loaded here -->
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-secondary" onclick="hideContributeForm()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About the MCMC Atlas</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            The MCMC Atlas was created to provide a centralized, comprehensive resource 
+                            for anyone working with Markov Chain Monte Carlo methods in R. Our goal is 
+                            to make it easy to discover, compare, and choose the right MCMC algorithm 
+                            for your specific needs.
+                        </p>
+                        <p>
+                            This atlas is maintained by the R MCMC community and welcomes contributions 
+                            from researchers, practitioners, and developers worldwide.
+                        </p>
+                    </div>
+                    <div class="about-stats">
+                        <h3>Atlas Statistics</h3>
+                        <ul>
+                            <li>Last updated: <span id="last-updated">Loading...</span></li>
+                            <li>Total algorithms: <span id="about-total-algorithms">0</span></li>
+                            <li>Total packages: <span id="about-total-packages">0</span></li>
+                            <li>Active contributors: <span id="about-contributors">0</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 MCMC Atlas. Built with ❤️ for the R community.</p>
+            <div class="footer-links">
+                <a href="https://github.com/mcmcatlas" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="mailto:contact@mcmcatlas.org">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

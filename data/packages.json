@@ -1,0 +1,454 @@
+[
+  {
+    "id": "coda",
+    "name": "coda",
+    "version": "0.19-4",
+    "description": "Output analysis and diagnostics for MCMC",
+    "long_description": "The coda package provides functions for summarizing and plotting the results from Markov Chain Monte Carlo (MCMC) simulations, as well as diagnostic tests of convergence to the equilibrium distribution of the Markov chain.",
+    "maintainer": "Martyn Plummer <martyn.plummer@r-project.org>",
+    "authors": ["Martyn Plummer", "Nicky Best", "Kate Cowles", "Karen Vines"],
+    "url": "https://cran.r-project.org/package=coda",
+    "cran_url": "https://cran.r-project.org/package=coda",
+    "github_url": "https://github.com/cran/coda",
+    "license": "GPL-2 | GPL-3",
+    "depends": ["R (>= 2.14.0)", "lattice"],
+    "suggests": ["MASS", "Matrix", "boot", "KernSmooth"],
+    "algorithms": ["metropolis-hastings"],
+    "categories": ["standard", "diagnostics"],
+    "installation": "install.packages('coda')",
+    "documentation_url": "https://cran.r-project.org/web/packages/coda/coda.pdf",
+    "vignettes": [
+      {
+        "title": "Introduction to coda",
+        "url": "https://cran.r-project.org/web/packages/coda/vignettes/coda.pdf"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "rstan",
+    "name": "rstan",
+    "version": "2.32.3",
+    "description": "R Interface to Stan",
+    "long_description": "User-facing R functions are provided to parse, compile, test, estimate, and analyze Stan models by accessing the header-only Stan library. The Stan project develops a probabilistic programming language that implements full Bayesian statistical inference via MCMC sampling, approximate Bayesian inference via variational inference, and (optionally penalized) maximum likelihood estimation via optimization.",
+    "maintainer": "Jiqiang Guo <jiqiang.guo@gmail.com>",
+    "authors": ["Jiqiang Guo", "Jarrod Millman", "Aki Vehtari", "Andrew Gelman", "Bob Carpenter", "Paul-Christian Bürkner", "Marcus Brubaker", "Jonah Gabry", "Ben Goodrich", "Sebastian Weber"],
+    "url": "https://mc-stan.org/rstan/",
+    "cran_url": "https://cran.r-project.org/package=rstan",
+    "github_url": "https://github.com/stan-dev/rstan",
+    "license": "GPL-3",
+    "depends": ["R (>= 3.4.0)", "Rcpp (>= 0.12.0)", "inline", "gridExtra", "ggplot2"],
+    "suggests": ["bayesplot", "loo", "shinystan", "rstanarm", "brms"],
+    "algorithms": ["hamiltonian-monte-carlo", "nuts"],
+    "categories": ["hmc", "probabilistic-programming"],
+    "installation": "install.packages('rstan', repos = 'https://cloud.r-project.org/', dependencies = TRUE)",
+    "documentation_url": "https://mc-stan.org/rstan/",
+    "vignettes": [
+      {
+        "title": "Getting Started with RStan",
+        "url": "https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html"
+      },
+      {
+        "title": "RStan: the R interface to Stan",
+        "url": "https://cran.r-project.org/web/packages/rstan/vignettes/stan.html"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "MCMCpack",
+    "name": "MCMCpack",
+    "version": "1.6-3",
+    "description": "Markov Chain Monte Carlo (MCMC) Package",
+    "long_description": "MCMCpack contains functions to perform Bayesian inference using posterior simulation for a number of statistical models. Most simulation is done in compiled C++ written in the Scythe Statistical Library Version 1.0.3. All models return 'mcmc' objects that can subsequently be analyzed with functions provided in the coda package.",
+    "maintainer": "Andrew D. Martin <adm82@columbia.edu>",
+    "authors": ["Andrew D. Martin", "Kevin M. Quinn", "Jong Hee Park"],
+    "url": "https://cran.r-project.org/package=MCMCpack",
+    "cran_url": "https://cran.r-project.org/package=MCMCpack",
+    "github_url": "https://github.com/cran/MCMCpack",
+    "license": "GPL-2 | GPL-3",
+    "depends": ["R (>= 3.0.0)", "coda", "MASS", "lattice"],
+    "suggests": ["testthat"],
+    "algorithms": ["gibbs-sampler", "parallel-tempering"],
+    "categories": ["standard", "parallel", "regression"],
+    "installation": "install.packages('MCMCpack')",
+    "documentation_url": "https://cran.r-project.org/web/packages/MCMCpack/MCMCpack.pdf",
+    "vignettes": [
+      {
+        "title": "MCMCpack User's Guide",
+        "url": "https://cran.r-project.org/web/packages/MCMCpack/vignettes/MCMCpack.pdf"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "nimble",
+    "name": "nimble",
+    "version": "1.0.1",
+    "description": "MCMC, Particle Filtering, and Programmable Hierarchical Modeling",
+    "long_description": "A system for building and sharing analysis methods for statistical models, especially for hierarchical models and computationally-intensive methods. The nimble system includes a configuration system, a domain-specific language (DSL) that extends R, a compiler that generates C++, and an R interface to the compiled functions.",
+    "maintainer": "Perry de Valpine <perry@berkeley.edu>",
+    "authors": ["Perry de Valpine", "Daniel Turek", "Christopher Paciorek", "Cliff Anderson-Bergman", "Toby Dylan Hocking", "Nick Michaud", "Fritz Obermeyer", "Duncan Temple Lang", "Casper Kaae Sonderby"],
+    "url": "https://r-nimble.org/",
+    "cran_url": "https://cran.r-project.org/package=nimble",
+    "github_url": "https://github.com/nimble-dev/nimble",
+    "license": "BSD_2_clause + file LICENSE",
+    "depends": ["R (>= 3.5.0)", "Rcpp (>= 0.12.0)", "igraph", "methods"],
+    "suggests": ["testthat", "knitr", "rmarkdown", "ggplot2", "coda", "MCMCpack"],
+    "algorithms": ["adaptive-mcmc", "particle-filter"],
+    "categories": ["adaptive", "hierarchical", "programmable"],
+    "installation": "install.packages('nimble')",
+    "documentation_url": "https://r-nimble.org/documentation",
+    "vignettes": [
+      {
+        "title": "Introduction to NIMBLE",
+        "url": "https://cran.r-project.org/web/packages/nimble/vignettes/Introduction_to_NIMBLE.pdf"
+      },
+      {
+        "title": "MCMC Sampling in NIMBLE",
+        "url": "https://cran.r-project.org/web/packages/nimble/vignettes/MCMC_sampling_in_NIMBLE.pdf"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "rjags",
+    "name": "rjags",
+    "version": "4-14",
+    "description": "Bayesian Graphical Models using MCMC",
+    "long_description": "Interface to the JAGS MCMC library. JAGS is Just Another Gibbs Sampler. It is a program for analysis of Bayesian hierarchical models using Markov Chain Monte Carlo (MCMC) simulation not wholly unlike BUGS.",
+    "maintainer": "Martyn Plummer <martyn.plummer@r-project.org>",
+    "authors": ["Martyn Plummer"],
+    "url": "https://cran.r-project.org/package=rjags",
+    "cran_url": "https://cran.r-project.org/package=rjags",
+    "github_url": "https://github.com/cran/rjags",
+    "license": "GPL-2",
+    "depends": ["R (>= 2.14.0)", "coda"],
+    "suggests": ["lattice", "MASS"],
+    "algorithms": ["gibbs-sampler", "slice-sampler"],
+    "categories": ["standard", "bugs-compatible"],
+    "installation": "install.packages('rjags')",
+    "documentation_url": "https://cran.r-project.org/web/packages/rjags/rjags.pdf",
+    "vignettes": [
+      {
+        "title": "rjags: Bayesian Graphical Models using MCMC",
+        "url": "https://cran.r-project.org/web/packages/rjags/vignettes/rjags.pdf"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "brms",
+    "name": "brms",
+    "version": "2.20.4",
+    "description": "Bayesian Regression Models using 'Stan'",
+    "long_description": "Fit Bayesian generalized (non-)linear multivariate multilevel models using 'Stan' for full Bayesian inference. A wide range of distributions and link functions are supported, allowing users to fit - among others - linear, robust linear, binomial, Poisson, survival, ordinal, zero-inflated, hurdle, and even non-linear models all in a multilevel context.",
+    "maintainer": "Paul-Christian Bürkner <paul.buerkner@gmail.com>",
+    "authors": ["Paul-Christian Bürkner"],
+    "url": "https://paul-buerkner.github.io/brms/",
+    "cran_url": "https://cran.r-project.org/package=brms",
+    "github_url": "https://github.com/paul-buerkner/brms",
+    "license": "GPL (>= 2)",
+    "depends": ["R (>= 3.5.0)", "rstan (>= 2.19.2)", "Rcpp (>= 0.12.0)", "ggplot2", "loo", "bayesplot"],
+    "suggests": ["testthat", "knitr", "rmarkdown", "shinystan", "rstanarm", "MCMCglmm"],
+    "algorithms": ["nuts", "variational-inference"],
+    "categories": ["hmc", "regression", "multilevel"],
+    "installation": "install.packages('brms')",
+    "documentation_url": "https://paul-buerkner.github.io/brms/",
+    "vignettes": [
+      {
+        "title": "brms: An R Package for Bayesian Multilevel Models using Stan",
+        "url": "https://cran.r-project.org/web/packages/brms/vignettes/brms_overview.pdf"
+      },
+      {
+        "title": "How to use the brms package",
+        "url": "https://cran.r-project.org/web/packages/brms/vignettes/brms_introduction.pdf"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "dust2",
+    "name": "dust2",
+    "version": "0.3.25",
+    "description": "Engine for running dynamical systems with sequential Monte Carlo methods",
+    "long_description": "The dust2 package provides an engine for running dynamical systems in discrete or continuous time and where the processes are stochastic or deterministic. It focuses on Markov models and implements sequential Monte Carlo methods such as bootstrap particle filters. The package handles parallel execution, efficient simulation management, and comparison to time-series data.",
+    "maintainer": "Rich FitzJohn <rich.fitzjohn@gmail.com>",
+    "authors": ["Rich FitzJohn"],
+    "url": "https://mrc-ide.github.io/dust2/",
+    "cran_url": "https://mrc-ide.r-universe.dev/",
+    "github_url": "https://github.com/mrc-ide/dust2",
+    "license": "MIT",
+    "depends": ["R (>= 4.0.0)"],
+    "suggests": ["odin2", "monty", "testthat"],
+    "algorithms": ["particle-filters"],
+    "categories": ["particle-filters", "dynamical-systems"],
+    "installation": "install.packages('dust2', repos = c('https://mrc-ide.r-universe.dev', 'https://cloud.r-project.org'))",
+    "documentation_url": "https://mrc-ide.github.io/dust2/",
+    "vignettes": [
+      {
+        "title": "Principles and design of dust",
+        "url": "https://mrc-ide.github.io/dust2/articles/design.html"
+      },
+      {
+        "title": "Getting started with dust2",
+        "url": "https://mrc-ide.github.io/dust2/articles/dust2.html"
+      },
+      {
+        "title": "Writing dust2 systems",
+        "url": "https://mrc-ide.github.io/dust2/articles/writing.html"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "bayesiantools",
+    "name": "BayesianTools",
+    "version": "0.1.8",
+    "description": "General-Purpose MCMC and SMC Samplers and Tools for Bayesian Statistics",
+    "long_description": "BayesianTools provides general-purpose MCMC and SMC samplers, as well as plots and diagnostic functions for Bayesian statistics, with a particular focus on calibrating complex system models. Implemented samplers include various Metropolis MCMC variants (including adaptive and/or delayed rejection MH), the T-walk, two differential evolution MCMCs, two DREAM MCMCs, and a sequential Monte Carlo (SMC) particle filter.",
+    "maintainer": "Florian Hartig <florian.hartig@biologie.uni-regensburg.de>",
+    "authors": ["Florian Hartig", "Francesco Minunno", "Stefan Paul", "David Cameron", "Tankred Ott", "Maximilian Pichler"],
+    "url": "https://florianhartig.r-universe.dev/BayesianTools",
+    "cran_url": "https://florianhartig.r-universe.dev/BayesianTools",
+    "github_url": "https://github.com/florianhartig/bayesiantools",
+    "license": "GPL-2 | GPL-3",
+    "depends": ["R (>= 3.0.0)", "coda", "MASS", "lattice"],
+    "suggests": ["testthat", "knitr", "rmarkdown", "ggplot2", "dplyr"],
+    "algorithms": ["metropolis-hastings", "particle-filters", "differential-evolution", "t-walk"],
+    "categories": ["metropolis-hastings", "particle-filters", "differential-evolution", "t-walk", "diagnostics"],
+    "installation": "install.packages('BayesianTools', repos = c('https://florianhartig.r-universe.dev', 'https://cloud.r-project.org'))",
+    "documentation_url": "https://florianhartig.r-universe.dev/BayesianTools",
+    "vignettes": [
+      {
+        "title": "Bayesian Tools - General-Purpose MCMC and SMC Samplers",
+        "url": "https://florianhartig.r-universe.dev/BayesianTools/doc/BayesianTools.html"
+      },
+      {
+        "title": "Interfacing your model with R",
+        "url": "https://florianhartig.r-universe.dev/BayesianTools/doc/InterfacingAModel.html"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "drjacoby",
+    "name": "drjacoby",
+    "version": "1.5.4",
+    "description": "Flexible MCMC with parallel tempering for poorly mixing posteriors",
+    "long_description": "drjacoby is a package for running flexible Markov chain Monte Carlo (MCMC) with minimal fiddling required by the user. It uses parallel tempering to 'melt' the target distribution, thereby allowing information to pass between well-separated peaks. The package is specifically tailored to MCMC problems that mix poorly due to highly correlated and/or multi-modal posteriors, which can occur in both simple and complex models.",
+    "maintainer": "Bob Verity <bob.verity@lshtm.ac.uk>",
+    "authors": ["Bob Verity", "Pete Winskill"],
+    "url": "https://mrc-ide.github.io/drjacoby/",
+    "cran_url": "https://cran.r-project.org/package=drjacoby",
+    "github_url": "https://github.com/mrc-ide/drjacoby",
+    "license": "MIT",
+    "depends": ["R (>= 3.5.0)", "Rcpp", "RcppArmadillo"],
+    "suggests": ["testthat", "knitr", "rmarkdown", "ggplot2", "coda"],
+    "algorithms": ["parallel-tempering"],
+    "categories": ["parallel-tempering", "multimodal", "diagnostics"],
+    "installation": "install.packages('drjacoby')",
+    "documentation_url": "https://mrc-ide.github.io/drjacoby/",
+    "vignettes": [
+      {
+        "title": "Installation",
+        "url": "https://mrc-ide.github.io/drjacoby/articles/installation.html"
+      },
+      {
+        "title": "Basic Example",
+        "url": "https://mrc-ide.github.io/drjacoby/articles/basic-example.html"
+      },
+      {
+        "title": "Parallel Tempering",
+        "url": "https://mrc-ide.github.io/drjacoby/articles/parallel-tempering.html"
+      },
+      {
+        "title": "Running Parallel Chains",
+        "url": "https://mrc-ide.github.io/drjacoby/articles/parallel-chains.html"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "posterior",
+    "name": "posterior",
+    "version": "1.5.1",
+    "description": "Tools for Working with Posterior Distributions",
+    "long_description": "The posterior package provides useful tools for both users and developers of Bayesian models, focusing on posterior analysis, diagnostics, and visualization. It provides a unified interface for working with posterior samples from various MCMC packages and includes functions for convergence diagnostics, posterior summaries, and model comparison.",
+    "maintainer": "Paul-Christian Bürkner <paul.buerkner@gmail.com>",
+    "authors": ["Paul-Christian Bürkner", "Jonah Gabry", "Matthew Kay", "Aki Vehtari"],
+    "url": "https://mc-stan.org/posterior/",
+    "cran_url": "https://cran.r-project.org/package=posterior",
+    "github_url": "https://github.com/stan-dev/posterior",
+    "license": "BSD_3_clause + file LICENSE",
+    "depends": ["R (>= 3.4.0)", "Rcpp (>= 0.12.0)"],
+    "suggests": ["testthat", "knitr", "rmarkdown", "ggplot2", "dplyr", "tidyr"],
+    "algorithms": ["posterior-analysis"],
+    "categories": ["posterior-analysis", "diagnostics", "visualization"],
+    "installation": "install.packages('posterior')",
+    "documentation_url": "https://mc-stan.org/posterior/",
+    "vignettes": [
+      {
+        "title": "Introduction to posterior",
+        "url": "https://cran.r-project.org/web/packages/posterior/vignettes/posterior.html"
+      },
+      {
+        "title": "Posterior analysis workflow",
+        "url": "https://cran.r-project.org/web/packages/posterior/vignettes/posterior-workflow.html"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "tidybayes",
+    "name": "tidybayes",
+    "version": "3.0.2",
+    "description": "Tidy Data and Geoms for Bayesian Models",
+    "long_description": "tidybayes is an R package that facilitates the use of Bayesian models with the tidy data ecosystem. It provides a set of functions for extracting draws from Bayesian models into tidy data frames, making it easy to manipulate, summarize, and visualize posterior distributions using standard tidyverse tools.",
+    "maintainer": "Matthew Kay <mjskay@northwestern.edu>",
+    "authors": ["Matthew Kay"],
+    "url": "https://mjskay.github.io/tidybayes/",
+    "cran_url": "https://cran.r-project.org/package=tidybayes",
+    "github_url": "https://github.com/mjskay/tidybayes",
+    "license": "GPL-3",
+    "depends": ["R (>= 3.2.0)", "dplyr", "tidyr", "ggplot2"],
+    "suggests": ["testthat", "knitr", "rmarkdown", "rstan", "rstanarm", "brms", "coda"],
+    "algorithms": ["posterior-analysis"],
+    "categories": ["posterior-analysis", "tidyverse", "visualization"],
+    "installation": "install.packages('tidybayes')",
+    "documentation_url": "https://mjskay.github.io/tidybayes/",
+    "vignettes": [
+      {
+        "title": "Introduction to tidybayes",
+        "url": "https://cran.r-project.org/web/packages/tidybayes/vignettes/tidybayes.html"
+      },
+      {
+        "title": "Tidy data manipulation for Bayesian models",
+        "url": "https://cran.r-project.org/web/packages/tidybayes/vignettes/tidy-data.html"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "ggdist",
+    "name": "ggdist",
+    "version": "3.3.0",
+    "description": "Visualizations of Distributions and Uncertainty",
+    "long_description": "ggdist is an R package that provides a flexible set of geoms and stats for visualizing distributions and uncertainty in ggplot2. It's particularly useful for Bayesian analysis, providing geoms for visualizing posterior distributions, credible intervals, and other uncertainty measures in a tidy, ggplot2-compatible way.",
+    "maintainer": "Matthew Kay <mjskay@northwestern.edu>",
+    "authors": ["Matthew Kay"],
+    "url": "https://mjskay.github.io/ggdist/",
+    "cran_url": "https://cran.r-project.org/package=ggdist",
+    "github_url": "https://github.com/mjskay/ggdist",
+    "license": "GPL-3",
+    "depends": ["R (>= 3.2.0)", "ggplot2 (>= 3.3.0)", "dplyr"],
+    "suggests": ["testthat", "knitr", "rmarkdown", "tidybayes", "posterior", "distributional"],
+    "algorithms": ["posterior-analysis"],
+    "categories": ["visualization", "plotting", "posterior-analysis", "ggplot2"],
+    "installation": "install.packages('ggdist')",
+    "documentation_url": "https://mjskay.github.io/ggdist/",
+    "vignettes": [
+      {
+        "title": "Introduction to ggdist",
+        "url": "https://cran.r-project.org/web/packages/ggdist/vignettes/ggdist.html"
+      },
+      {
+        "title": "Visualizing distributions",
+        "url": "https://cran.r-project.org/web/packages/ggdist/vignettes/slabinterval.html"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "rstanarm",
+    "name": "rstanarm",
+    "version": "2.32.1",
+    "description": "Bayesian Applied Regression Modeling via Stan",
+    "long_description": "rstanarm is an R package that provides a user-friendly interface to Stan for Bayesian regression modeling. It makes Bayesian estimation routine for the most common regression models that applied researchers use, enabling researchers to avoid the counter-intuitiveness of the frequentist approach with only minimal changes to their existing R scripts. The package includes functions for linear models, generalized linear models, mixed-effects models, and more, all with sensible default priors.",
+    "maintainer": "Jonah Gabry <jonah.gabry@gmail.com>",
+    "authors": ["Jonah Gabry", "Ben Goodrich"],
+    "url": "https://mc-stan.org/rstanarm/",
+    "cran_url": "https://cran.r-project.org/package=rstanarm",
+    "github_url": "https://github.com/stan-dev/rstanarm",
+    "license": "GPL-3",
+    "depends": ["R (>= 3.4.0)", "Rcpp (>= 0.12.0)", "rstan (>= 2.18.1)"],
+    "suggests": ["testthat", "knitr", "rmarkdown", "ggplot2", "bayesplot", "shinystan", "loo"],
+    "algorithms": ["hmc", "metropolis-hastings"],
+    "categories": ["bayesian", "regression", "mixed-effects", "stan"],
+    "installation": "install.packages('rstanarm')",
+    "documentation_url": "https://mc-stan.org/rstanarm/articles/rstanarm.html",
+    "vignettes": [
+      {
+        "title": "How to Use the rstanarm Package",
+        "url": "https://mc-stan.org/rstanarm/articles/rstanarm.html"
+      },
+      {
+        "title": "Linear and Generalized Linear Models",
+        "url": "https://mc-stan.org/rstanarm/articles/glm.html"
+      },
+      {
+        "title": "Mixed-Effects Models",
+        "url": "https://mc-stan.org/rstanarm/articles/lmer.html"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  },
+  {
+    "id": "mcmcglmm",
+    "name": "MCMCglmm",
+    "version": "2.34",
+    "description": "MCMC Generalised Linear Mixed Models",
+    "long_description": "MCMCglmm is an R package for fitting Generalised Linear Mixed Models using Markov Chain Monte Carlo (MCMC) techniques. It provides a flexible framework for Bayesian analysis of mixed-effects models with various response distributions, including Gaussian, Poisson, binomial, multinomial, and ordinal responses. The package is particularly useful for phylogenetic comparative analysis and animal breeding applications.",
+    "maintainer": "Jarrod Hadfield <j.hadfield@ed.ac.uk>",
+    "authors": ["Jarrod Hadfield"],
+    "url": "https://cran.r-project.org/package=MCMCglmm",
+    "cran_url": "https://cran.r-project.org/package=MCMCglmm",
+    "github_url": "https://github.com/JarrodHadfield/MCMCglmm",
+    "license": "GPL-2",
+    "depends": ["R (>= 3.0.0)", "Matrix", "coda", "ape", "tensorA"],
+    "suggests": ["testthat", "knitr", "rmarkdown", "ggplot2", "lattice"],
+    "algorithms": ["metropolis-hastings", "gibbs-sampler"],
+    "categories": ["mixed-effects", "bayesian", "phylogenetic", "animal-breeding"],
+    "installation": "install.packages('MCMCglmm')",
+    "documentation_url": "https://cran.r-project.org/web/packages/MCMCglmm/MCMCglmm.pdf",
+    "vignettes": [
+      {
+        "title": "Course Notes",
+        "url": "https://cran.r-project.org/web/packages/MCMCglmm/vignettes/CourseNotes.pdf"
+      },
+      {
+        "title": "Tutorial",
+        "url": "https://cran.r-project.org/web/packages/MCMCglmm/vignettes/Tutorial.pdf"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
+  }
+]
