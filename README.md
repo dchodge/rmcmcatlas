@@ -8,12 +8,13 @@ This atlas is actively being developed and expanded. We're continuously adding n
 
 ## 🌐 Live Site
 
-The MCMC Atlas is deployed on GitHub Pages: [https://dchodge.github.io/Rmcmcatlas](https://dchodge.github.io/Rmcmcatlas)
+The MCMC Atlas is deployed on GitHub Pages: [https://dchodge.github.io/Rmcmcatlas](https://dchodge.github.io/rmcmcatlas/)
 
 ## 📋 Features
 
 - **Algorithm Categories**: Organised by MCMC type (Non-adaptive MH, Adaptive MH, Population-based, Sequential, HMC, Gibbs)
 - **Package Information**: Links to CRAN packages with function details
+- 
 - **Educational Content**: Explanations and process steps for each algorithm type
 - **Contribution System**: Submit new algorithms and packages for review
 - **Posterior Analysis Tools**: Resources for MCMC output analysis
@@ -24,7 +25,7 @@ To run the MCMC Atlas locally:
 
 ```bash
 # Clone the repository
-git clone https://github.com/dchodge/Rmcmcatlas.git
+git clone https://dchodge.github.io/rmcmcatlas.git
 cd Rmcmcatlas
 
 # Start a local server (Python 3)
