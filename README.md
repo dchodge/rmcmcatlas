@@ -8,7 +8,7 @@ This atlas is actively being developed and expanded. We're continuously adding n
 
 ## 🌐 Live Site
 
-The MCMC Atlas is deployed on GitHub Pages: [https://dchodge.github.io/Rmcmcatlas](https://yourusername.github.io/Rmcmcatlas)
+The MCMC Atlas is deployed on GitHub Pages: [https://dchodge.github.io/Rmcmcatlas](https://dchodge.github.io/Rmcmcatlas)
 
 ## 📋 Features
 
