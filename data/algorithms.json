@@ -127,6 +127,11 @@
         "name": "BayesianTools",
         "function": "Metropolis",
         "description": "Independence Metropolis-Hastings variants"
+      },
+      {
+        "name": "monty",
+        "function": "monty_sample",
+        "description": "Flexible MCMC sampling with various samplers"
       }
     ],
     "example_code": "# Independence Metropolis-Hastings example\nlibrary(nimble)\n\n# Define model\ncode <- nimbleCode({\n  x ~ dnorm(0, 1)\n})\n\n# Create model\nmodel <- nimbleModel(code)\n\n# Configure MCMC with independence sampler\nmcmcConfig <- configureMCMC(model)\nmcmcConfig$removeSamplers('x')\nmcmcConfig$addSampler(target = 'x', type = 'RW_ind')\n\n# Build and run MCMC\nmcmc <- buildMCMC(mcmcConfig)\ncompiled <- compileNimble(model, mcmc)\n\n# Run sampling\ncompiled$mcmc$run(1000)",
@@ -234,6 +239,11 @@
         "name": "nimble",
         "function": "configureMCMC",
         "description": "Configurable adaptive MCMC samplers"
+      },
+      {
+        "name": "monty",
+        "function": "monty_sample",
+        "description": "Flexible MCMC sampling with adaptive samplers"
       }
     ],
     "example_code": "# Adaptive Metropolis-Hastings example\nlibrary(BayesianTools)\n\n# Define log density function\nlog_density <- function(x) {\n  -0.5 * sum(x^2)  # Standard normal\n}\n\n# Setup\nsetup <- createBayesianSetup(log_density, lower = c(-10, -10), upper = c(10, 10))\n\n# Run adaptive MCMC\nresult <- runMCMC(setup, sampler = \"Metropolis\", settings = list(iterations = 1000))\n\n# Plot results\nplot(result)",
@@ -392,6 +402,11 @@
         "name": "nimble",
         "function": "configureMCMC",
         "description": "Configurable parallel tempering samplers"
+      },
+      {
+        "name": "monty",
+        "function": "monty_sample",
+        "description": "Flexible MCMC sampling with parallel tempering"
       }
     ],
     "example_code": "# Parallel Tempering example\nlibrary(drjacoby)\n\n# Define log density function\nlog_density <- function(x) {\n  -0.5 * sum(x^2)  # Standard normal\n}\n\n# Setup parallel tempering\nresult <- run_mcmc(\n  data = list(),\n  df_params = data.frame(name = c(\"x1\", \"x2\"),\n                        min = c(-10, -10),\n                        max = c(10, 10),\n                        init = c(0, 0)),\n  loglike = log_density,\n  n_chains = 4,\n  n_burnin = 1000,\n  n_sample = 1000,\n  parallel = TRUE\n)\n\n# Plot results\nplot(result)",

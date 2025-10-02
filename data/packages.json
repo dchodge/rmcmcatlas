@@ -450,5 +450,33 @@
     "contributor": "MCMC Atlas Team",
     "date_added": "2024-01-01",
     "last_updated": "2024-01-01"
+  },
+  {
+    "id": "monty",
+    "name": "monty",
+    "version": "0.0.1",
+    "description": "Toolbox for Monte Carlo methods",
+    "long_description": "monty is a toolbox for Monte Carlo methods designed to help run MCMC with models that do not fit closely within the paradigms of packages such as Stan. It provides a high-level DSL for specifying priors, supports various samplers, and includes a fast, parallelizable random number generator that can be used from both R and C++.",
+    "maintainer": "MRC Centre for Global Infectious Disease Analysis <mrc-ide@imperial.ac.uk>",
+    "authors": ["Rich FitzJohn", "MRC Centre for Global Infectious Disease Analysis"],
+    "url": "https://mrc-ide.github.io/monty/",
+    "cran_url": "https://mrc-ide.r-universe.dev/",
+    "github_url": "https://github.com/mrc-ide/monty",
+    "license": "MIT",
+    "depends": ["R (>= 4.0.0)"],
+    "suggests": ["dust2", "odin2", "testthat"],
+    "algorithms": ["metropolis-hastings", "adaptive-mcmc", "parallel-tempering"],
+    "categories": ["metropolis-hastings", "adaptive", "parallel-tempering", "dsl", "random-numbers"],
+    "installation": "install.packages('monty', repos = c('https://mrc-ide.r-universe.dev', 'https://cloud.r-project.org'))",
+    "documentation_url": "https://mrc-ide.github.io/monty/",
+    "vignettes": [
+      {
+        "title": "Basic introduction to monty",
+        "url": "https://mrc-ide.github.io/monty/articles/monty.html"
+      }
+    ],
+    "contributor": "MCMC Atlas Team",
+    "date_added": "2024-01-01",
+    "last_updated": "2024-01-01"
   }
 ]
